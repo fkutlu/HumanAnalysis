@@ -1,0 +1,7 @@
+﻿CMake, Visual Studio ve python 3.6.8 gerekmektedir.
+install_windows.bat dosyası yönetici modu ile çalıştırılmalıdır.
+
+run.bat -> tam sürüm uygulama -> camera.py scriptini kullanır 
+runNoPersonID.bat -> ID atamasız(tracking olmadan) -> cameraNoRecognation.py scriptini kullanır 
+
+cv2.VideoCapture(0) -> video kaynağı

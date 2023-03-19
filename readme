@@ -1,0 +1,68 @@
+Host: 195.87.213.76
+User: readonly
+Pass: 35Kc6KVm
+Database: emotion
+
+Table: detect
+
+Cam_ID,angry,disgust,fear,happy,sad,surprise,neutral,age,gender,time
+
+sudo systemctl status my-webapp
+
+
+#Create service
+sudo nano /etc/systemd/system/my-webapp.service
+##### Service File #####
+[Unit]
+Description=My Webapp Java REST Service
+[Service]
+# The configuration file application.properties should be here:
+#change this to your workspace
+WorkingDirectory=/home/sahip/IK
+#path to executable. 
+#executable is a bash script which calls jar file
+ExecStart=/home/sahip/IK/start.sh
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=multi-user.target
+#Service END
+
+#start service
+sudo systemctl daemon-reload
+sudo systemctl enable my-webapp.service
+sudo systemctl start my-webapp
+sudo systemctl status my-webapp
+
+#mysql remote access
+ 
+/etc/mysql/mysql.conf.d/mysqld.cnf file and change the line:
+
+bind-address = 127.0.0.1
+to:
+
+bind-address = 0.0.0.0
+Save and close that file. Restart the MySQL server with the command:
+
+systemctl restart mysql.service
+
+#Create Database
+sudo mysql
+CREATE DATABASE dbname;
+USE dbname;
+#load database
+mysql -u username -p < example.sql
+
+#Create admin user
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'password';
+mysql> FLUSH PRIVILEGES;
+#Create readonly user
+mysql> grant select on database_name.* to 'read-only_user_name'@'%' identified by 'password';
+mysql> flush privileges;
+
+
+
+
+

@@ -1,0 +1,1 @@
+pip install FER opencv-contrib-python keras tensorflow matplotlib pandas numpy Pillow face_recognition flask
